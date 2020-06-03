@@ -1,16 +1,23 @@
-from bs4 import BeautifulSoup
-import pandas as pd
+# coding: UTF-8
 import requests
-from datetime import datetime 
+from bs4 import BeautifulSoup
 
-stock_number = 9434 
-url = 'https://kabuoji3.com/stock/{}/'.format(stock_number)
+# アクセスするURL
+#url = "http://www.nikkei.com/"
+#url = "https://www.nikkei.com/markets/kabu/"
+stock_number = 9434
+url = 'https://www.nikkei.com/nkd/company/?scode={}'.format(stock_number)
 
-headers = {
-"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15"
-}
-soup = BeautifulSoup(requests.get(url).content,'html.parser')
+# URLにアクセスする htmlが帰ってくる → <html><head><title>経済、株価、ビジネス、政治のニュース:日経電子版</title></head><body....
+html = requests.get(url=url)
 
-print soup
+# htmlをBeautifulSoupで扱う
+soup = BeautifulSoup(html.content,"html.parser")
+#span = soup.find_all("span")
+dd = soup.find_all("dd")
 
+nikkei_heikin = ""
 
+tmp = soup.find(class_="m-stockPriceElm_value")
+tmp = tmp.text
+print(tmp)
