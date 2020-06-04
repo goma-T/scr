@@ -5,10 +5,15 @@ import json
 # api get information about price
 def get_message():
   resoponse = requests.get('http://127.0.0.1:8888/')
-  print(resoponse.json())
+  #print(resoponse.json())
   return json.dumps(resoponse.json())
 
-
+# judge value
+def judge_value(stri):
+  payload = {'message' : stri}
+  print (stri) 
+  print (payload)
+  
 
 # send line 
 def send_message(stri):
@@ -23,6 +28,7 @@ if __name__ == "__main__":
   if stri=="{}": 
     print("null")
   else:
+    judge_value(stri)
     send_message(stri)
   
 
