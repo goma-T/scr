@@ -8,11 +8,21 @@ def get_message():
   #print(resoponse.json())
   return json.dumps(resoponse.json())
 
+# decorde value
+def decorde_val(stri):
+  del_yen = stri.replace("円"," " )
+  del_dot = del_yen.replace(",","" )
+  val = float(del_dot) 
+  if val > 1000 :
+    print(val) 
+
 # judge value
 def judge_value(stri):
-  payload = {'message' : stri}
-  print (stri) 
-  print (payload)
+  #tmp = stri.object.get["msg"]
+  tmp = json.loads(stri)
+  val_str = tmp.get("msg")
+  #print (val_str)
+  decorde_val(val_str)
   
 
 # send line 
